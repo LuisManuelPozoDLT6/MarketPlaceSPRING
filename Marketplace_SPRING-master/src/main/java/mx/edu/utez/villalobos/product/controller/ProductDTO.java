@@ -1,36 +1,29 @@
-package mx.edu.utez.villalobos.product.model;
+package mx.edu.utez.villalobos.product.controller;
 
 import mx.edu.utez.villalobos.status.model.Status;
 import mx.edu.utez.villalobos.subcategories.model.Subcategory;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDTO {
     private long id;
     private String name;
-    private String description;
+    private String descrition;
     private double price;
     private int quantity;
     private String brand;
-    @ManyToOne
-    @JoinColumn(name = "_id")
     private Status status;
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id")
     private Subcategory subcategory;
-    @OneToMany(mappedBy = "product")
-    private List<ProductImage> images;
+    private List<ProductImageDTO> images;
 
-    public Product() {
+
+
+    public ProductDTO() {
     }
 
-    public Product(String name, String description, double price, int quantity, String brand, Status status, Subcategory subcategory, List<ProductImage> images) {
+    public ProductDTO(String name, String descrition, double price, int quantity, String brand, Status status, Subcategory subcategory, List<ProductImageDTO> images) {
         this.name = name;
-        this.description = description;
+        this.descrition = descrition;
         this.price = price;
         this.quantity = quantity;
         this.brand = brand;
@@ -39,23 +32,15 @@ public class Product {
         this.images = images;
     }
 
-    public Product(long id, String name, String description, double price, int quantity, String brand, Status status, Subcategory subcategory, List<ProductImage> images) {
+    public ProductDTO(long id, String name, String descrition, double price, int quantity, String brand, Status status, Subcategory subcategory, List<ProductImageDTO> images) {
         this.id = id;
         this.name = name;
-        this.description = description;
+        this.descrition = descrition;
         this.price = price;
         this.quantity = quantity;
         this.brand = brand;
         this.status = status;
         this.subcategory = subcategory;
-        this.images = images;
-    }
-
-    public List<ProductImage> getImages() {
-        return images;
-    }
-
-    public void setImages(List<ProductImage> images) {
         this.images = images;
     }
 
@@ -75,12 +60,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescrition() {
+        return descrition;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescrition(String descrition) {
+        this.descrition = descrition;
     }
 
     public double getPrice() {
@@ -115,6 +100,14 @@ public class Product {
         this.status = status;
     }
 
+    public List<ProductImageDTO> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ProductImageDTO> images) {
+        this.images = images;
+    }
+
     public Subcategory getSubcategory() {
         return subcategory;
     }
@@ -122,4 +115,7 @@ public class Product {
     public void setSubcategory(Subcategory subcategory) {
         this.subcategory = subcategory;
     }
+
 }
+
+
